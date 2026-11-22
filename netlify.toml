@@ -1,2 +1,3 @@
+# Site Victor Lage: publicado automaticamente pelo Netlify a cada envio para main
 [build]
   publish = "."
