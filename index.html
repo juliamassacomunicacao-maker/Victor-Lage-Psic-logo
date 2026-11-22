@@ -155,6 +155,74 @@ footer .logo { --s:40px; }
   .btn { transition:background-color .2s, color .2s, border-color .2s, box-shadow .2s; }
   .btn:hover, .btn:focus-visible, .btn:active { --y:0px; }
 }
+
+/* ===== Camada premium (2026-11-22) ===== */
+:root { --linha:color-mix(in srgb, var(--tinta) 14%, transparent); --claro:#F0A27A; }
+body { font-size:17.5px; letter-spacing:.005em; }
+h1, h2, h3 { letter-spacing:-.012em; }
+h2 { font-size:clamp(2.3rem, 4.8vw, 3.7rem); line-height:1.02; }
+h2 em, h1 em { font-style:italic; }
+.lead { font-size:clamp(1.1rem, 1.55vw, 1.26rem); line-height:1.62; }
+/* papel com grão sutil nas faixas claras */
+.faixa:not(.escura):not(.abre) { position:relative; isolation:isolate; }
+.faixa:not(.escura):not(.abre)::after { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.5; mix-blend-mode:multiply; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .24 0 0 0 0 .2 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.faixa:not(.abre) { padding-block:clamp(80px, 11vw, 148px); }
+.wrap { max-width:1160px; }
+/* rótulos com numeração de capítulo e fio terracota */
+.rotulo { display:flex; align-items:center; gap:14px; font-size:11.5px; letter-spacing:3.4px; }
+.rotulo::before { content:""; width:28px; height:1px; background:var(--barro); flex:none; }
+.escura .rotulo::before { background:var(--claro); }
+.rotulo[data-n]::before { content:attr(data-n); width:auto; height:auto; background:none; font-family:var(--serif); font-style:italic; font-size:15px; letter-spacing:0; text-transform:none; color:var(--barro); padding-right:14px; border-right:1px solid currentColor; line-height:1; }
+.escura .rotulo[data-n]::before { color:var(--claro); }
+/* menu: mais leve, sublinhado que cresce */
+.topo { height:64px; --menu:64px; border-bottom-color:transparent; transition:border-color .3s, box-shadow .3s; }
+:root { --menu:64px; }
+.topo.rolou { border-bottom-color:var(--linha); box-shadow:0 8px 24px -18px rgba(var(--sombra),.35); }
+.topo-links { gap:34px; }
+.topo-links a { position:relative; border-bottom:0; font-size:11.5px; letter-spacing:2px; }
+.topo-links a::after { content:""; position:absolute; left:0; right:0; bottom:2px; height:1px; background:var(--barro); transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.2,.7,.2,1); }
+.topo-links a:hover::after, .topo-links a:focus-visible::after { transform:scaleX(1); }
+/* botões: mais refinados */
+.btn { min-height:54px; padding:15px 30px; font-size:14.5px; letter-spacing:.6px; }
+.btn-barro { box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 1px 2px rgba(var(--sombra),.2); }
+/* abertura: fio de luz no fim do labirinto */
+.abre-lab { -webkit-mask-image:linear-gradient(180deg,#000 82%,transparent); mask-image:linear-gradient(180deg,#000 82%,transparent); }
+.abre .lead { font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem, 2.4vw, 2rem); line-height:1.2; color:var(--papel); }
+/* sobre: retrato com moldura deslocada */
+.retrato { padding:0 18px 0 0; }
+.retrato::before { content:""; position:absolute; top:18px; left:18px; right:0; aspect-ratio:4/5; border:1px solid color-mix(in srgb, var(--barro) 55%, transparent); z-index:-1; }
+.retrato img { border-radius:0; box-shadow:0 30px 60px -28px rgba(var(--sombra),.45); }
+.retrato figcaption { margin-top:16px; font-size:12px; letter-spacing:1.6px; text-transform:uppercase; }
+.formacao li { padding-block:18px; }
+.formacao b { font-size:1.4rem; }
+/* como funciona: numerais editoriais */
+.passos li { padding-top:22px; gap:12px; }
+.passos li::before { content:counter(passo, decimal-leading-zero); font-style:italic; font-size:3.4rem; }
+.passos h3 { font-size:1.6rem; }
+.combinado { background:var(--papel); border:1px solid var(--linha); box-shadow:0 30px 60px -40px rgba(var(--sombra),.35); padding:clamp(28px, 4.5vw, 56px); gap:clamp(24px, 4vw, 64px); }
+.combinado > div + div { border-left:1px solid var(--linha); padding-left:clamp(24px, 4vw, 64px); }
+/* psicanálise: aspas grandes */
+.citacao { position:relative; padding-top:40px; font-size:clamp(1.8rem, 3.1vw, 2.5rem); }
+.citacao::before { content:"“"; position:absolute; top:-.18em; right:0; font-family:var(--serif); font-style:normal; font-size:7rem; line-height:1; color:color-mix(in srgb, var(--claro) 55%, transparent); }
+.ideias h3 { font-size:1.6rem; }
+/* dobra final */
+.final h2 { font-size:clamp(2.7rem, 6.4vw, 5.2rem); line-height:1; max-width:14ch; }
+.final-pe { border-top-color:var(--linha); padding-top:36px; }
+/* rodapé */
+footer { padding-block:64px calc(48px + env(safe-area-inset-bottom, 0px)); }
+footer .logo { --s:48px; }
+.rodape-fim { width:100%; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 24px; padding-top:24px; border-top:1px solid color-mix(in srgb, var(--papel) 16%, transparent); font-size:12px; letter-spacing:.4px; color:color-mix(in srgb, var(--papel) 60%, transparent); }
+/* entradas suaves ao rolar (só com JS e sem redução de movimento) */
+.js-revela .revela { opacity:0; transform:translateY(22px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); transition-delay:var(--atraso, 0s); }
+.js-revela .revela.visivel { opacity:1; transform:none; }
+@media (max-width:900px) { .combinado > div + div { border-left:0; padding-left:0; } }
+@media (max-width:640px) {
+  .combinado > div + div { border-top:1px solid var(--linha); padding-top:24px; }
+  .citacao::before { font-size:5rem; }
+  .topo-links { gap:20px; }
+  .retrato { padding:0 12px 0 0; } .retrato::before { top:12px; left:12px; }
+}
+@media (prefers-reduced-motion: reduce) { .js-revela .revela { opacity:1; transform:none; transition:none; } }
 </style>
 <meta property="og:title" content="Victor Lage, Psicólogo">
 <meta property="og:description" content="Psicanálise lacaniana, com atendimento online. CRP 04/87455.">
@@ -196,7 +264,7 @@ footer .logo { --s:40px; }
       </figure>
       <div class="sobre-txt">
         <div class="cab">
-          <p class="rotulo">Sobre</p>
+          <p class="rotulo" data-n="01">Sobre</p>
           <h2 id="t-sobre">Uma escuta para além dos <em>rótulos</em>.</h2>
           <p>Procuro compreender cada pessoa para além de rótulos e diagnósticos, com uma escuta atenta e acolhedora. Acredito que cada história pede tempo, e que o sofrimento de alguém não cabe inteiro em um nome.</p>
           <p>Atuo na clínica orientado pela psicanálise lacaniana, acompanhando pessoas na busca por formas mais leves de lidar com aquilo que as faz sofrer.</p>
@@ -220,7 +288,7 @@ footer .logo { --s:40px; }
 <section id="como-funciona" class="faixa mesa" aria-labelledby="t-como">
   <div class="wrap">
     <div class="cab">
-      <p class="rotulo">Como funciona</p>
+      <p class="rotulo" data-n="02">Como funciona</p>
       <h2 id="t-como">Online, com o mesmo <em>cuidado</em>.</h2>
       <p class="lead">Os atendimentos acontecem por videochamada. A tela muda o lugar do encontro, mas não o que ele pede: sigilo, regularidade e um espaço onde você possa falar com liberdade.</p>
     </div>
@@ -228,7 +296,7 @@ footer .logo { --s:40px; }
       <li><h3>Agende</h3><p>Você me chama no WhatsApp e combinamos juntos o dia e o horário da sessão.</p></li>
       <li><h3>Receba o link</h3><p>Antes de cada sessão, eu envio o link da videochamada. Não é preciso instalar nada especial.</p></li>
       <li><h3>Prepare seu espaço</h3><p>Escolha um lugar reservado, onde você esteja confortável e ninguém possa ouvir a conversa.</p></li>
-      <li><h3>Fale</h3><p>No horário marcado, a sessão começa. O ritmo das sessões seguintes é combinado entre nós.</p></li>
+      <li><h3>Fale</h3><p>No horário marcado, a sessão começa. Você fala do que quiser, no seu tempo.</p></li>
     </ol>
     <div class="combinado">
       <div>
@@ -255,7 +323,7 @@ footer .logo { --s:40px; }
   <div class="wrap">
     <div class="psi">
       <div class="psi-txt">
-        <p class="rotulo">A psicanálise</p>
+        <p class="rotulo" data-n="03">A psicanálise</p>
         <h2 id="t-psi">Falar, e se <em>escutar</em> falando.</h2>
         <p class="lead">A psicanálise nasceu com Sigmund Freud, que descobriu que há em nós um saber que não sabemos: o inconsciente. Ele aparece nos sonhos, nos esquecimentos, nos lapsos e naquilo que insiste em se repetir em nossa vida.</p>
         <p>Jacques Lacan, psicanalista francês, retomou a obra de Freud dando destaque à linguagem. Para ele, o inconsciente se organiza como uma linguagem. Por isso, na análise, o trabalho se faz pela palavra: você fala livremente sobre o que vier à cabeça, e o analista escuta não só o que é dito, mas como é dito.</p>
@@ -302,6 +370,7 @@ footer .logo { --s:40px; }
       <a href="https://api.whatsapp.com/send?phone=5531987700677&amp;text=Ol%C3%A1%2C%20Victor!%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">(31) 98770-0677</a>
       <a href="https://www.instagram.com/victorlagepsi/" target="_blank" rel="noopener">@victorlagepsi</a>
     </div>
+    <div class="rodape-fim"><span>© 2026 Victor Lage</span><span>Psicanálise lacaniana · atendimento online</span></div>
   </div>
 </footer>
 
@@ -341,6 +410,26 @@ footer .logo { --s:40px; }
         { offset: 1, opacity: 0 }
       ], { duration: CYCLE, iterations: Infinity });
     }
+  });
+})();
+</script>
+<script>
+(function () {
+  var topo = document.querySelector('.topo');
+  var marca = function () { topo && topo.classList.toggle('rolou', window.scrollY > 8); };
+  window.addEventListener('scroll', marca, { passive: true }); marca();
+  if (!('IntersectionObserver' in window) || !window.matchMedia || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var alvos = document.querySelectorAll('section .cab, section .rotulo, section h2, .sobre-txt > *, .retrato, .passos li, .combinado, .psi-txt > *, .psi-lado > *, .ideias li, .final-pe');
+  var vistos = new Set();
+  alvos.forEach(function (el) { if ([].some.call(alvos, function (o) { return o !== el && o.contains(el); })) return; vistos.add(el); });
+  document.documentElement.classList.add('js-revela');
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visivel'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  vistos.forEach(function (el) {
+    var irmaos = [].filter.call(el.parentNode.children, function (c) { return vistos.has(c); });
+    el.style.setProperty('--atraso', (Math.min(irmaos.indexOf(el), 4) * .08) + 's');
+    el.classList.add('revela'); io.observe(el);
   });
 })();
 </script>
