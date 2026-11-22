@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Victor Lage, Psicólogo</title>
+<meta name="description" content="Victor Lage, psicólogo (CRP 04/87455). Psicanálise lacaniana com atendimento online. Agende uma sessão pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: faixas alternadas papel / mesa / madeira, como as páginas de um caderno; manual Entrelinhas sem o padrão do labirinto. Visual único da marca, não muda com o tema. */
+:root {
+  --papel:#F7F0E5; --tinta:#673C33; --barro:#CF541C; --barro-escuro:#B44817; --mesa:#EFE6D8; --suave:#8C6A61; --sombra:60,35,28;
+  --serif:"Instrument Serif", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --menu:60px;
+  color-scheme:light;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--papel); color:var(--tinta); font-family:var(--sans); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:30; background:var(--papel); }
+img { max-width:100%; }
+a { color:inherit; }
+:focus-visible { outline:2px solid var(--barro); outline-offset:3px; }
+section[id], header[id] { scroll-margin-top:var(--menu); }
+
+.faixa { padding-block:clamp(64px, 9vw, 120px); padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+.faixa.mesa { background:var(--mesa); }
+.faixa.escura { background:var(--tinta); color:var(--papel); }
+.wrap { max-width:1120px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px, 4vw, 48px); }
+.cab { display:flex; flex-direction:column; gap:16px; }
+.rotulo { margin:0; font-size:12px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--suave); }
+.escura .rotulo { color:color-mix(in srgb, var(--papel) 70%, transparent); }
+h1, h2, h3 { font-family:var(--serif); font-weight:400; margin:0; text-wrap:balance; }
+h1 { font-size:clamp(2.4rem, 5.6vw, 4.4rem); line-height:1.04; }
+h2 { font-size:clamp(2.1rem, 4.4vw, 3.3rem); line-height:1.06; }
+h3 { font-size:1.55rem; line-height:1.15; }
+h1 em, h2 em { color:var(--barro); }
+p { margin:0; max-width:62ch; }
+.lead { font-size:clamp(1.08rem, 1.5vw, 1.22rem); line-height:1.6; }
+
+/* Logo: nome em Instrument Serif; descritor começa sob a ponta de baixo do V */
+.logo { display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1; text-decoration:none; }
+.logo-nome { font-family:var(--serif); font-weight:400; font-size:var(--s); line-height:1; white-space:nowrap; }
+.logo-desc { font-weight:500; text-transform:uppercase; white-space:nowrap; font-size:calc(var(--s) * .21); letter-spacing:.2em; margin-top:calc(var(--s) * .2); padding-left:calc(var(--s) * .228 - .074em); }
+.logo-desc .r { color:var(--barro); letter-spacing:.05em; }
+
+/* Botões: levantam ao passar o mouse e ao clicar */
+.botoes { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+.btn { --y:0px; display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:14px 26px; border-radius:999px; border:1.5px solid transparent; font-family:var(--sans); font-size:15px; font-weight:500; letter-spacing:.4px; text-decoration:none; cursor:pointer; transform:translateY(var(--y)); box-shadow:0 1px 2px rgba(var(--sombra),.16); transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s cubic-bezier(.2,.7,.2,1), background-color .2s, color .2s, border-color .2s; }
+.btn svg { width:19px; height:19px; flex:none; }
+.btn:hover, .btn:focus-visible { --y:-3px; box-shadow:0 6px 14px rgba(var(--sombra),.18), 0 16px 30px rgba(var(--sombra),.16); }
+.btn:active { --y:-6px; box-shadow:0 10px 18px rgba(var(--sombra),.22), 0 24px 40px rgba(var(--sombra),.18); transition-duration:.12s; }
+.btn-barro { background:var(--barro); color:var(--papel); }
+.btn-barro:hover, .btn-barro:active { background:var(--barro-escuro); }
+.btn-linha { background:transparent; color:var(--tinta); border-color:color-mix(in srgb, var(--tinta) 40%, transparent); box-shadow:none; }
+.btn-linha:hover, .btn-linha:active, .btn-linha:focus-visible { background:var(--papel); border-color:var(--tinta); }
+.escura .btn-linha, .abre .btn-linha { color:var(--papel); border-color:color-mix(in srgb, var(--papel) 50%, transparent); }
+.escura .btn-linha:hover, .escura .btn-linha:active, .abre .btn-linha:hover, .abre .btn-linha:active, .abre .btn-linha:focus-visible { background:var(--papel); color:var(--tinta); border-color:var(--papel); }
+.btn-sm { min-height:40px; padding:9px 18px; font-size:13px; }
+
+/* Menu */
+.topo { position:sticky; top:env(safe-area-inset-top, 0px); z-index:20; height:var(--menu); display:flex; align-items:center; gap:28px; padding-left:max(clamp(16px, 4vw, 56px), env(safe-area-inset-left, 0px)); padding-right:max(clamp(16px, 4vw, 56px), env(safe-area-inset-right, 0px)); background:color-mix(in srgb, var(--papel) 93%, transparent); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid color-mix(in srgb, var(--tinta) 12%, transparent); }
+.topo .logo { --s:23px; color:var(--tinta); }
+.topo .logo-desc { font-size:7.5px; letter-spacing:2px; margin-top:4px; }
+.topo-links { margin-left:auto; display:flex; gap:26px; overflow-x:auto; scrollbar-width:none; min-width:0; }
+.topo-links::-webkit-scrollbar { display:none; }
+.topo-links a { font-size:12px; font-weight:500; letter-spacing:1.6px; text-transform:uppercase; white-space:nowrap; text-decoration:none; padding-block:6px; border-bottom:1px solid transparent; transition:border-color .2s; }
+.topo-links a:hover, .topo-links a:focus-visible { border-bottom-color:var(--barro); }
+
+/* Abertura */
+.abre { background:var(--tinta); color:var(--papel); padding-block:0 clamp(40px, 5vw, 64px); }
+.abre-lab { height:clamp(300px, 36vw, 500px); height:min(clamp(300px, 36vw, 500px), max(200px, calc(100vh - var(--menu) - 250px))); height:min(clamp(300px, 36vw, 500px), max(200px, calc(100svh - var(--menu) - 250px))); margin-left:calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right:calc(-1 * max(16px, env(safe-area-inset-right, 0px))); color:var(--papel); overflow:hidden; }
+.abre-lab svg { display:block; width:100%; height:100%; }
+.abre .wrap { gap:0; }
+.abre .logo { --s:clamp(52px, 7.5vw, 92px); margin-left:-.05em; }
+.abre-txt { display:flex; flex-direction:column; gap:20px; margin-top:clamp(28px, 3.5vw, 44px); }
+.abre-txt h1 em { color:#F0A27A; }
+.abre-txt p { color:color-mix(in srgb, var(--papel) 88%, transparent); }
+
+/* Sobre */
+.sobre { display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:clamp(36px, 6vw, 88px); align-items:start; }
+.retrato { margin:0; position:relative; }
+.retrato img { display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; border-radius:2px; box-shadow:0 1px 2px rgba(var(--sombra),.14), 0 22px 44px rgba(var(--sombra),.14); }
+.retrato figcaption { margin-top:14px; font-size:13px; color:var(--suave); }
+.sobre-txt { display:flex; flex-direction:column; gap:28px; min-width:0; margin-top:-3px; }
+.sobre-txt .cab p:not(.rotulo) { font-size:1.08rem; }
+#t-sobre { font-size:clamp(1.9rem, 3.3vw, 2.9rem); white-space:nowrap; }
+@media (max-width:370px) { #t-sobre { white-space:normal; } }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.formacao { margin:0; padding:0; list-style:none; border-top:1px solid color-mix(in srgb, var(--tinta) 16%, transparent); }
+.formacao li { display:grid; grid-template-columns:150px minmax(0,1fr); gap:20px; align-items:baseline; padding-block:14px; border-bottom:1px solid color-mix(in srgb, var(--tinta) 16%, transparent); }
+.formacao span { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--suave); }
+.formacao b { font-family:var(--serif); font-weight:400; font-size:1.3rem; line-height:1.25; }
+.formacao small { display:block; font-size:14px; color:var(--suave); margin-top:2px; }
+
+/* Como funciona */
+.passos { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:clamp(20px, 2.6vw, 32px); counter-reset:passo; }
+.passos li { counter-increment:passo; display:flex; flex-direction:column; gap:10px; min-width:0; border-top:1px solid color-mix(in srgb, var(--tinta) 22%, transparent); padding-top:18px; }
+.passos li::before { content:counter(passo); font-family:var(--serif); font-size:3rem; line-height:.9; color:var(--barro); }
+.passos p { font-size:15.5px; }
+.combinado { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(20px, 3vw, 40px); background:var(--papel); padding:clamp(24px, 4vw, 44px); border-radius:2px; }
+.combinado > div { display:flex; flex-direction:column; gap:10px; min-width:0; }
+.combinado h3 { font-size:1.45rem; }
+.combinado ul { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; font-size:15.5px; }
+.combinado li { position:relative; padding-left:24px; }
+.combinado li::before { content:"…"; position:absolute; left:0; top:-.1em; color:var(--barro); font-weight:500; }
+
+/* A psicanálise */
+.psi { display:grid; grid-template-columns:minmax(0, 6fr) minmax(0, 5fr); gap:clamp(36px, 6vw, 88px); align-items:start; }
+.psi-txt { display:flex; flex-direction:column; gap:20px; min-width:0; }
+.psi-txt p { color:color-mix(in srgb, var(--papel) 90%, transparent); }
+.escura h2 em { color:#F0A27A; }
+.psi-lado { display:flex; flex-direction:column; gap:28px; min-width:0; }
+.psi-lado p { color:color-mix(in srgb, var(--papel) 90%, transparent); }
+.citacao { margin:0; padding:28px 0 0; border-top:1px solid color-mix(in srgb, var(--papel) 28%, transparent); font-family:var(--serif); font-style:italic; font-size:clamp(1.6rem, 2.8vw, 2.2rem); line-height:1.2; }
+.citacao cite { display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-size:11px; font-weight:500; letter-spacing:2.5px; text-transform:uppercase; color:color-mix(in srgb, var(--papel) 70%, transparent); }
+.ideias { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:clamp(20px, 3vw, 36px); }
+.ideias li { min-width:0; border-top:1px solid color-mix(in srgb, var(--papel) 28%, transparent); padding-top:16px; display:flex; flex-direction:column; gap:8px; }
+.ideias p { font-size:15.5px; color:color-mix(in srgb, var(--papel) 84%, transparent); }
+
+/* Dobra final */
+.final .wrap { align-items:flex-start; }
+.final h2 { font-size:clamp(2.4rem, 5.4vw, 4.2rem); max-width:15ch; }
+.final-pe { width:100%; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:28px; border-top:1px solid color-mix(in srgb, var(--tinta) 18%, transparent); padding-top:28px; }
+.final-pe p { font-size:15px; color:var(--suave); }
+
+footer { background:var(--tinta); color:var(--papel); padding-block:48px calc(40px + env(safe-area-inset-bottom, 0px)); padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+footer .wrap { flex-direction:row; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:28px; }
+footer .logo { --s:40px; }
+.rodape-dados { display:flex; flex-wrap:wrap; gap:8px 28px; font-size:14px; color:color-mix(in srgb, var(--papel) 82%, transparent); font-variant-numeric:tabular-nums; }
+.rodape-dados a { text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--papel) 30%, transparent); }
+.rodape-dados a:hover { border-bottom-color:var(--papel); }
+
+@media (max-width:900px) {
+  .passos { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .psi, .sobre { grid-template-columns:minmax(0,1fr); }
+  .retrato { max-width:420px; }
+}
+@media (max-width:640px) {
+  body { font-size:16px; }
+  .topo { gap:16px; }
+  .topo .logo-desc { display:none; }
+  .topo-links { gap:18px; padding-right:20px; -webkit-mask-image:linear-gradient(90deg,#000 85%,transparent); mask-image:linear-gradient(90deg,#000 85%,transparent); }
+  .topo-links a { font-size:11px; letter-spacing:1.2px; }
+  .passos, .ideias, .combinado { grid-template-columns:minmax(0,1fr); }
+  .formacao li { grid-template-columns:minmax(0,1fr); gap:4px; }
+  .botoes { flex-direction:column; align-items:stretch; }
+  .btn { justify-content:center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  .btn { transition:background-color .2s, color .2s, border-color .2s, box-shadow .2s; }
+  .btn:hover, .btn:focus-visible, .btn:active { --y:0px; }
+}
+</style>
+<meta property="og:title" content="Victor Lage, Psicólogo">
+<meta property="og:description" content="Psicanálise lacaniana, com atendimento online. CRP 04/87455.">
+<meta property="og:image" content="img/abertura.jpg">
+<meta name="theme-color" content="#673C33">
+</head>
+<body>
+<nav class="topo" aria-label="Menu principal">
+  <a class="logo" href="#inicio" aria-label="Victor Lage, Psicólogo. Voltar ao início"><span class="logo-nome">Victor Lage</span><span class="logo-desc">Psicólogo<span class="r">…</span></span></a>
+  <div class="topo-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#psicanalise">A psicanálise</a>
+  </div>
+</nav>
+
+<header id="inicio" class="faixa abre">
+  <h1 class="sr-only">Victor Lage, Psicólogo</h1>
+  <div class="abre-lab" aria-hidden="true"><svg class="lab-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M-42.3 39.0L-21.5 43.0Q-4.1 46.4 -2.8 64.1L-2.6 66.7Q-1.1 85.3 -1.7 110.4L-1.9 118.5Q-2.4 137.6 13.7 135.8L26.9 134.4Q41.7 132.8 56.6 132.2L86.2 131.0" stroke-width="16.4"/><path d="M-47.7 213.9L-12.4 217.4Q4.9 219.1 19.1 219.0L34.9 218.9Q47.9 218.8 61.5 219.0L92.7 219.5" stroke-width="15.7"/><path d="M-42.3 445.0Q-23.8 441.9 -5.1 441.5" stroke-width="15.6"/><path d="M-48.4 481.3Q-23.4 481.2 0.3 489.2" stroke-width="15.5"/><path d="M3.8 -38.2L-0.4 -19.5Q-3.7 -4.6 19.8 0.0L31.4 2.3Q49.5 5.9 47.5 17.0L45.9 26.3Q43.8 38.5 45.8 56.4L46.8 64.9Q49.3 86.6 69.0 87.9L73.3 88.2Q93.0 89.5 92.5 67.2L92.0 39.8" stroke-width="14.3"/><path d="M-3.5 174.8L28.9 174.6Q44.2 174.6 45.4 188.8L47.9 218.8" stroke-width="14.6"/><path d="M2.8 400.9L23.7 398.5Q38.3 396.8 60.2 394.1L72.4 392.6Q91.2 390.3 107.2 390.7L119.3 390.9Q136.2 391.3 151.6 393.3L177.2 396.6" stroke-width="15.9"/><path d="M43.1 310.0L43.2 281.2Q43.3 263.2 24.4 264.1L9.8 264.8Q-5.9 265.5 -4.0 278.0L-2.0 292.0Q-0.1 304.7 1.0 321.1L2.0 336.3Q3.2 355.4 18.4 352.7L43.5 348.1" stroke-width="14.0"/><path d="M43.3 484.1L63.6 484.9Q82.3 485.7 103.7 486.3L107.6 486.4Q126.9 486.9 149.6 485.7L155.9 485.4Q179.4 484.1 195.1 484.1L202.8 484.1Q214.5 484.0 230.6 485.9L239.6 486.9Q262.5 489.6 261.1 468.0L259.5 444.4" stroke-width="15.5"/><path d="M93.6 5.1L92.5 28.4Q92.0 39.8 103.8 42.4L111.3 44.0Q127.9 47.6 152.5 43.4L162.6 41.8Q181.3 38.6 194.2 41.6L218.2 47.2" stroke-width="16.7"/><path d="M83.6 176.0L112.1 174.1Q137.2 172.4 133.4 194.7L132.5 199.9Q129.1 220.1 129.4 236.2L129.5 240.7Q129.8 258.3 129.0 279.3L128.1 303.8" stroke-width="14.3"/><path d="M91.5 259.3Q91.4 284.6 88.4 309.7" stroke-width="17.0"/><path d="M88.7 353.0L117.3 349.5Q136.7 347.1 133.2 329.6L131.2 319.6Q128.1 303.8 147.8 305.9L158.4 307.1Q182.1 309.6 178.8 291.2L177.5 283.6Q174.7 267.7 174.1 251.9L173.1 226.0" stroke-width="14.3"/><path d="M135.0 -5.6L163.9 -3.9Q179.9 -3.0 194.8 0.2L209.2 3.3Q221.7 6.0 221.5 -8.4L221.1 -42.0" stroke-width="13.8"/><path d="M127.7 89.4L130.1 119.2Q131.2 132.2 146.3 130.7L165.9 128.9Q180.9 127.5 178.4 142.6L172.6 177.9" stroke-width="15.0"/><path d="M127.2 438.2Q149.8 440.6 172.6 441.0" stroke-width="14.4"/><path d="M177.5 87.7Q175.6 62.9 181.3 38.6" stroke-width="17.2"/><path d="M216.8 303.7L215.7 335.1Q215.0 353.7 235.0 354.4L268.6 355.5" stroke-width="14.6"/><path d="M214.0 441.8L218.7 408.9Q220.8 394.2 234.7 394.5L246.0 394.8Q265.8 395.3 286.7 396.9L299.0 397.8Q313.4 398.9 310.8 386.2L308.3 373.7Q304.9 357.0 303.9 337.6L303.6 331.2Q302.4 308.4 283.8 306.7L262.8 304.8" stroke-width="14.2"/><path d="M260.3 1.3L291.1 1.6Q308.1 1.7 325.1 -0.3L355.9 -4.0" stroke-width="14.8"/><path d="M258.4 136.8L293.4 135.4Q311.5 134.7 323.2 135.2L334.9 135.7Q345.9 136.2 362.9 134.8L380.9 133.2Q399.0 131.6 399.0 116.5L399.0 87.4" stroke-width="13.8"/><path d="M262.0 267.1Q286.1 269.9 310.4 268.3" stroke-width="14.6"/><path d="M308.7 87.2L281.8 87.9Q267.6 88.3 250.1 88.8L234.4 89.2Q217.1 89.7 220.1 103.0L222.0 111.7Q225.7 128.5 225.3 146.5L224.7 170.0" stroke-width="17.2"/><path d="M311.0 173.9Q315.3 154.3 311.5 134.7" stroke-width="14.9"/><path d="M304.8 445.0L309.9 417.5Q313.4 398.9 329.6 398.7L339.3 398.6Q353.6 398.4 353.8 384.0L353.9 371.6Q354.0 357.9 353.2 342.4L352.6 331.0Q351.6 312.2 352.8 294.1L353.6 282.2Q354.4 268.4 353.4 254.1L351.2 222.8" stroke-width="17.1"/><path d="M347.6 434.2L372.6 440.6Q391.2 445.3 392.4 422.4L392.8 414.8Q394.1 391.6 392.4 372.0L391.4 360.5Q390.2 346.4 392.7 334.9L398.4 309.6" stroke-width="15.9"/><path d="M394.3 223.9L397.4 248.5Q399.9 268.8 415.6 268.7L419.2 268.7Q434.7 268.5 458.9 269.0L466.6 269.1Q489.1 269.5 485.0 283.9L483.6 288.7Q479.2 304.4 459.5 303.4L435.2 302.3" stroke-width="16.1"/><path d="M437.4 -4.9L408.5 0.1Q391.0 3.2 391.5 17.7L392.0 30.0Q392.4 41.8 394.4 55.6L399.0 87.4" stroke-width="14.6"/><path d="M437.3 222.7L438.0 193.2Q438.4 173.8 423.8 174.7L414.1 175.3Q401.7 176.0 386.3 176.5L377.0 176.8Q356.3 177.5 354.0 198.1L352.8 208.4Q351.2 222.8 335.7 221.6L324.2 220.6Q302.2 218.9 284.8 220.9L276.1 221.9Q263.2 223.4 248.3 223.1L218.1 222.5" stroke-width="13.6"/><path d="M480.3 3.2L485.6 22.3Q489.9 37.9 467.4 40.6L457.2 41.8Q439.9 43.9 441.2 57.8L441.9 65.2Q443.7 84.1 441.9 105.7L441.2 114.0Q439.9 130.1 439.4 145.5L438.4 173.8" stroke-width="14.4"/><path d="M486.5 88.0L509.5 89.0Q523.2 89.7 523.1 74.0L523.0 63.2Q522.8 47.5 525.7 31.2L526.9 23.8Q530.4 3.5 530.0 -19.2L529.6 -45.8" stroke-width="13.9"/><path d="M488.8 170.2L512.2 172.1Q524.4 173.1 527.3 159.0L529.7 147.7Q532.9 132.0 547.3 133.8L570.5 136.7" stroke-width="15.7"/><path d="M487.1 399.1L457.3 395.8Q441.8 394.1 440.5 378.2L439.2 363.3Q437.9 347.8 454.7 349.8L470.4 351.8Q488.2 354.0 503.4 351.8L512.7 350.5Q531.0 347.9 529.4 369.9L528.9 376.1Q527.2 399.4 528.0 415.6L528.4 423.6Q529.0 435.4 514.1 438.5L483.5 444.7" stroke-width="14.3"/><path d="M524.9 261.9L549.7 260.8Q572.3 259.8 571.1 281.0L570.9 284.5Q569.9 304.2 573.4 326.6L574.4 332.9Q577.9 354.8 592.2 356.1L598.5 356.6Q611.1 357.7 627.7 355.0L655.1 350.6" stroke-width="14.4"/><path d="M573.7 -4.8L570.6 23.2Q568.4 42.6 585.5 42.7L594.6 42.7Q610.3 42.8 630.1 44.1L640.5 44.8Q663.6 46.4 681.1 46.1L685.3 46.0Q704.0 45.6 703.8 22.4L703.5 -4.4" stroke-width="15.3"/><path d="M572.9 91.1Q548.0 91.2 523.2 89.7" stroke-width="14.5"/><path d="M574.7 180.7L575.2 209.2Q575.4 222.5 589.7 222.4L603.5 222.3Q620.3 222.2 635.9 221.2L643.5 220.7Q661.7 219.4 679.4 220.4L701.7 221.6" stroke-width="16.4"/><path d="M573.6 392.9Q550.5 396.9 527.2 399.4" stroke-width="15.4"/><path d="M617.5 -45.1L617.9 -16.9Q618.2 5.3 634.9 3.8L656.1 1.9" stroke-width="15.1"/><path d="M615.9 181.8L612.1 148.8Q610.3 132.5 597.2 133.9L570.5 136.7" stroke-width="16.6"/><path d="M621.4 308.2L614.9 281.0Q611.1 264.9 629.4 265.6L638.9 265.9Q660.5 266.7 679.6 266.3L690.1 266.0Q704.2 265.7 719.6 265.2L729.2 265.0Q752.1 264.3 749.6 245.8L748.8 239.6Q746.9 225.5 746.0 208.3L744.4 178.3" stroke-width="13.8"/><path d="M657.2 306.8L678.9 306.9Q698.0 307.0 700.4 329.3L701.0 335.7Q703.0 354.4 702.7 369.7L702.5 380.0Q702.2 393.1 701.6 410.0L700.6 443.0" stroke-width="16.7"/><path d="M658.7 436.5L656.9 415.9Q655.4 399.4 676.3 396.6L702.2 393.1" stroke-width="16.1"/><path d="M703.6 132.8L677.6 135.5Q656.6 137.7 657.3 155.6L657.5 159.8Q658.2 177.7 659.8 196.4L661.7 219.4" stroke-width="15.4"/><path d="M701.5 176.6L728.8 177.7Q744.4 178.3 744.0 162.9L743.4 136.1" stroke-width="16.9"/><path d="M745.1 -45.5L745.0 -18.1Q745.0 -0.9 761.6 -2.9L771.9 -4.2Q788.1 -6.1 790.6 11.8L792.0 21.6Q794.7 41.3 792.3 59.7L788.9 85.6" stroke-width="16.2"/><path d="M746.3 49.3Q725.5 43.7 704.0 45.6" stroke-width="13.9"/><path d="M752.0 313.0L751.7 336.3Q751.5 347.6 751.7 363.9L751.9 380.5Q752.1 397.6 763.7 395.0L771.1 393.3Q786.0 390.0 810.4 393.5L821.4 395.0Q841.6 397.9 854.4 395.4L876.9 391.1" stroke-width="14.2"/><path d="M841.0 47.6L835.9 23.7Q831.9 4.8 853.7 4.2L859.0 4.1Q881.3 3.5 881.7 -15.8L882.1 -39.1" stroke-width="14.4"/><path d="M838.4 220.4L838.8 189.3Q839.0 175.2 825.9 175.7L812.9 176.1Q796.7 176.7 793.8 158.3L791.6 144.4Q789.1 128.7 789.0 114.7L789.0 102.3Q788.9 85.6 771.3 86.5L743.6 87.9" stroke-width="15.6"/><path d="M836.5 356.5L832.6 330.6Q829.9 312.2 832.3 292.5L833.2 284.4Q835.6 264.8 854.9 266.2L867.9 267.2Q882.0 268.2 880.9 280.0L879.9 291.1Q878.5 307.0 881.4 323.3L882.6 330.0Q885.7 346.8 882.0 365.5L876.9 391.1" stroke-width="17.2"/><path d="M877.9 445.9L907.2 442.1Q924.1 439.8 925.9 421.7L927.1 409.4Q928.9 390.3 945.0 393.1L954.2 394.7Q970.7 397.5 968.8 416.1L966.0 444.5" stroke-width="16.6"/><path d="M920.4 -0.8L922.0 26.9Q923.0 44.7 907.8 43.4L897.6 42.6Q884.0 41.4 884.0 57.3L884.0 86.8" stroke-width="15.6"/><path d="M929.9 177.9L928.5 202.0Q927.6 217.9 925.3 235.3L923.6 248.1Q921.7 261.5 922.8 276.4L923.9 292.6Q925.1 309.7 941.5 307.1L957.5 304.5Q971.5 302.3 971.3 318.7L971.0 338.6Q970.7 356.8 970.7 370.4L970.7 397.5" stroke-width="17.2"/><path d="M925.3 353.9Q906.1 347.4 885.7 346.8" stroke-width="17.1"/><path d="M969.4 1.4L993.0 2.0Q1013.6 2.4 1033.8 2.3L1039.0 2.3Q1057.2 2.2 1073.6 2.2L1082.1 2.1Q1096.5 2.1 1113.7 2.5L1122.4 2.7Q1143.5 3.2 1161.2 0.0L1165.6 -0.8Q1183.1 -3.9 1182.7 18.7L1182.3 47.4" stroke-width="15.8"/><path d="M965.0 261.6L996.2 261.7Q1011.0 261.8 1011.1 277.2L1011.1 288.4Q1011.1 309.7 1013.9 326.1L1014.8 331.7Q1017.3 346.5 1015.5 364.2L1012.8 390.3" stroke-width="17.2"/><path d="M1011.3 214.0L987.6 217.8Q966.6 221.1 948.3 219.6L927.6 217.9" stroke-width="17.4"/><path d="M1055.7 86.9L1083.2 88.9Q1095.1 89.8 1095.5 101.3L1095.9 111.4Q1096.5 127.7 1095.4 145.8L1094.9 155.4Q1094.0 169.9 1096.9 185.5L1098.7 195.7Q1102.3 215.3 1122.8 215.2L1133.9 215.1Q1149.7 214.9 1164.0 215.1L1192.6 215.4" stroke-width="13.8"/><path d="M1059.4 134.6L1036.7 134.7Q1016.4 134.8 1011.9 113.4L1011.0 109.0Q1006.9 89.6 1010.2 69.8L1012.3 57.4Q1014.6 43.5 1002.1 42.7L985.8 41.7Q973.3 41.0 958.1 42.1L923.0 44.7" stroke-width="16.1"/><path d="M1059.9 214.8L1056.0 247.8Q1053.7 266.8 1069.1 267.4L1078.9 267.8Q1095.9 268.4 1115.2 264.5L1143.8 258.6" stroke-width="15.3"/><path d="M1102.2 347.6L1078.4 349.1Q1059.7 350.3 1058.8 332.3L1058.5 326.0Q1057.8 309.6 1074.4 308.4L1084.5 307.7Q1099.0 306.6 1116.1 309.0L1147.5 313.5" stroke-width="13.9"/><path d="M1105.8 398.5L1079.4 395.9Q1060.0 393.9 1058.9 415.9L1058.4 424.7Q1057.3 445.9 1076.4 444.0L1082.5 443.4Q1104.1 441.2 1121.4 440.3L1124.9 440.1Q1141.6 439.1 1164.4 438.8L1192.8 438.5" stroke-width="14.7"/><path d="M1137.9 173.1L1140.7 150.9Q1143.0 133.1 1145.2 115.1L1145.7 111.2Q1147.9 92.8 1143.5 72.4L1138.4 48.1" stroke-width="15.8"/><path d="M1185.2 400.3L1188.9 374.3Q1191.8 354.3 1211.5 352.5L1215.9 352.1Q1237.1 350.1 1232.3 371.9L1230.4 380.7Q1226.9 396.7 1229.9 410.2L1235.7 436.3" stroke-width="15.9"/><path d="M1234.2 307.6Q1238.7 328.6 1237.1 350.1" stroke-width="14.6"/><path d="M1279.1 3.6L1277.0 24.6Q1275.5 38.9 1295.1 42.3L1307.7 44.5Q1323.8 47.4 1321.4 61.3L1319.1 75.1Q1316.7 89.0 1334.2 90.2L1351.5 91.5Q1368.9 92.7 1367.4 105.7L1364.3 131.7" stroke-width="16.3"/><path d="M1274.3 132.8L1274.6 157.0Q1274.8 176.2 1292.9 173.6L1302.3 172.3Q1315.7 170.4 1333.5 171.7L1347.9 172.8Q1370.1 174.4 1383.6 175.7L1403.1 177.6" stroke-width="14.9"/><path d="M1276.2 214.1Q1270.6 195.3 1274.8 176.2" stroke-width="17.4"/><path d="M1280.5 439.8L1278.5 462.6Q1276.8 481.1 1297.7 482.0L1301.4 482.1Q1323.4 483.1 1345.2 485.1L1369.5 487.3" stroke-width="14.6"/><path d="M1314.3 -47.7L1315.2 -25.2Q1316.1 -5.1 1336.0 -2.4L1338.8 -2.0Q1358.5 0.7 1363.2 20.5L1368.6 43.5" stroke-width="13.9"/><path d="M1321.2 130.7Q1342.8 127.2 1364.3 131.7" stroke-width="17.3"/><path d="M1317.0 308.8L1295.4 311.4Q1277.7 313.6 1277.9 330.3L1278.0 339.3Q1278.1 350.7 1290.8 349.8L1301.1 349.1Q1319.4 347.8 1341.6 352.3L1348.2 353.7Q1369.7 358.1 1365.8 334.2L1364.4 325.5Q1360.6 302.3 1360.7 285.6L1360.8 281.3Q1361.0 262.2 1364.8 244.4L1369.0 225.0" stroke-width="13.8"/><path d="M1359.6 399.1L1337.7 398.5Q1325.4 398.2 1322.6 413.6L1320.3 426.3Q1317.5 441.1 1334.7 439.1L1367.2 435.1" stroke-width="14.1"/><path d="M1407.8 -4.1L1436.2 -4.3Q1448.8 -4.4 1450.4 8.6L1451.7 18.2Q1454.2 38.0 1454.4 59.6L1454.7 84.2" stroke-width="14.5"/><path d="M1413.3 224.5L1389.7 224.8Q1369.0 225.0 1348.3 220.6L1344.7 219.8Q1324.8 215.6 1322.3 235.2L1319.4 259.0" stroke-width="16.1"/><path d="M1407.4 306.0L1410.4 278.4Q1412.0 263.7 1426.5 262.3L1438.0 261.1Q1453.6 259.6 1451.7 275.7L1450.2 288.5Q1448.6 302.5 1450.6 319.0L1452.5 335.2Q1454.6 352.7 1452.2 369.4L1447.6 400.6" stroke-width="16.9"/><path d="M1406.0 347.9Q1387.9 353.1 1369.7 358.1" stroke-width="14.9"/><path d="M1413.0 391.2L1435.4 397.3Q1447.6 400.6 1451.2 412.5L1454.3 422.8Q1457.9 434.5 1457.5 452.4L1457.2 468.7Q1456.9 486.1 1439.2 485.3L1423.6 484.6Q1404.4 483.7 1391.7 485.0L1369.5 487.3" stroke-width="17.4"/><path d="M1458.1 -38.8Q1457.6 -20.5 1448.8 -4.4" stroke-width="14.8"/><path d="M86.2 131.0Q108.6 135.7 131.2 132.2" stroke-width="13.9"/><path d="M90.8 437.5Q96.0 413.9 91.2 390.3" stroke-width="13.7"/><path d="M90.8 437.5Q83.4 461.0 82.3 485.7" stroke-width="14.9"/><path d="M173.1 226.0Q195.3 220.5 218.1 222.5" stroke-width="13.6"/><path d="M180.1 352.3Q182.0 374.7 177.2 396.6" stroke-width="15.3"/><path d="M180.1 352.3Q197.4 357.4 215.0 353.7" stroke-width="14.4"/><path d="M218.2 47.2L245.7 42.7Q264.9 39.5 280.9 42.7L288.8 44.3Q304.1 47.3 323.7 44.6L337.0 42.7Q354.6 40.3 351.9 55.2L349.4 68.5Q346.8 82.9 346.5 100.9L345.9 136.2" stroke-width="16.0"/><path d="M224.7 170.0L249.6 175.9Q266.6 179.8 265.2 197.5L263.2 223.4" stroke-width="14.4"/><path d="M302.6 486.9Q282.6 489.2 262.5 489.6" stroke-width="16.4"/><path d="M302.6 486.9L329.6 487.5Q346.5 487.8 364.8 488.0L372.3 488.0Q394.0 488.2 417.1 486.2L426.9 485.4Q444.5 483.9 456.2 485.7L478.0 489.1" stroke-width="14.3"/><path d="M398.4 309.6Q402.7 289.4 399.9 268.8" stroke-width="15.1"/><path d="M435.9 438.4Q413.4 440.9 391.2 445.3" stroke-width="13.6"/><path d="M435.9 438.4Q459.7 441.8 483.5 444.7" stroke-width="15.3"/><path d="M484.2 215.3Q484.4 242.6 489.1 269.5" stroke-width="16.7"/><path d="M484.2 215.3L511.8 216.7Q532.5 217.8 550.9 219.8L575.4 222.5" stroke-width="15.1"/><path d="M478.0 489.1L513.0 482.2Q531.1 478.6 546.6 482.3L561.5 485.9Q576.6 489.6 575.0 473.1L573.4 455.9Q571.9 440.2 586.1 440.3L601.0 440.4Q616.4 440.5 614.2 427.1L612.9 419.1Q610.1 401.8 610.5 382.1L611.1 357.7" stroke-width="13.8"/><path d="M611.0 90.5Q607.4 66.7 610.3 42.8" stroke-width="13.7"/><path d="M611.0 90.5Q609.6 111.5 610.3 132.5" stroke-width="15.9"/><path d="M616.3 486.5Q596.8 492.2 576.6 489.6" stroke-width="17.0"/><path d="M616.3 486.5L644.0 481.7Q662.7 478.4 677.5 480.6L683.4 481.5Q699.4 483.9 720.5 482.8L732.0 482.2Q748.0 481.3 761.0 481.8L769.7 482.1Q787.3 482.8 787.4 464.1L787.4 460.7Q787.5 441.1 771.1 438.6L752.4 435.7" stroke-width="15.1"/><path d="M659.0 92.2Q657.6 114.9 656.6 137.7" stroke-width="15.1"/><path d="M659.0 92.2L691.2 91.7Q709.4 91.4 721.8 90.1L743.6 87.9" stroke-width="14.6"/><path d="M700.6 443.0Q726.3 437.6 752.4 435.7" stroke-width="15.3"/><path d="M797.9 223.7Q772.3 220.3 746.9 225.5" stroke-width="16.7"/><path d="M797.9 223.7L796.9 244.8Q796.3 258.5 811.7 261.0L835.6 264.8" stroke-width="17.3"/><path d="M841.4 84.9L837.3 115.8Q835.0 133.6 836.5 148.8L839.0 175.2" stroke-width="15.7"/><path d="M841.4 84.9Q862.9 81.3 884.0 86.8" stroke-width="15.3"/><path d="M836.1 478.1Q812.1 484.3 787.3 482.8" stroke-width="17.4"/><path d="M836.1 478.1L866.9 485.5Q883.4 489.4 898.1 488.8L907.8 488.5Q925.6 487.8 945.5 488.2L956.3 488.4Q972.7 488.7 984.4 487.7L1006.3 485.7" stroke-width="15.7"/><path d="M885.2 133.5L879.8 161.2Q876.9 176.3 877.7 193.6L878.4 208.1Q879.2 225.6 880.2 240.7L882.0 268.2" stroke-width="16.1"/><path d="M885.2 133.5L907.3 133.3Q919.3 133.2 923.0 117.3L925.8 105.0Q929.6 88.2 942.9 88.0L952.6 87.8Q965.1 87.6 966.3 101.7L967.3 113.9Q968.4 127.7 966.7 142.7L963.4 171.5" stroke-width="13.9"/><path d="M963.4 171.5L992.0 176.5Q1012.6 180.2 1031.2 178.8L1042.3 178.0Q1057.4 176.9 1069.7 174.5L1094.0 169.9" stroke-width="16.4"/><path d="M966.0 444.5L996.1 441.9Q1011.5 440.6 1009.7 455.9L1008.3 468.0Q1006.3 485.7 1026.3 484.9L1038.5 484.4Q1057.4 483.6 1072.3 482.6L1097.7 480.8" stroke-width="15.9"/><path d="M1012.8 390.3Q1036.8 387.0 1060.0 393.9" stroke-width="15.0"/><path d="M1060.5 40.8Q1037.5 41.5 1014.6 43.5" stroke-width="15.5"/><path d="M1060.5 40.8L1084.3 46.7Q1097.3 50.0 1111.8 49.3L1138.4 48.1" stroke-width="16.6"/><path d="M1097.7 480.8L1123.8 479.5Q1139.8 478.7 1159.8 480.4L1169.8 481.3Q1192.6 483.3 1207.3 483.0L1215.7 482.8Q1226.6 482.6 1242.7 482.1L1276.8 481.1" stroke-width="14.5"/><path d="M1149.7 354.9L1148.4 330.5Q1147.5 313.5 1162.4 310.4L1167.3 309.4Q1183.7 306.0 1184.8 287.9L1186.2 266.2" stroke-width="16.8"/><path d="M1149.7 354.9L1146.6 379.9Q1144.2 398.9 1143.1 416.4L1141.6 439.1" stroke-width="16.6"/><path d="M1182.3 47.4L1186.1 78.2Q1187.7 91.5 1188.6 105.2L1189.3 117.1Q1190.6 137.1 1187.4 156.1L1186.3 162.9Q1183.4 180.6 1187.1 194.7L1192.6 215.4" stroke-width="15.6"/><path d="M1186.2 266.2L1214.2 265.5Q1237.7 264.9 1254.7 266.1L1259.7 266.4Q1275.0 267.5 1293.1 264.0L1319.4 259.0" stroke-width="15.1"/><path d="M1231.4 87.5L1233.3 110.9Q1234.7 129.4 1232.9 150.3L1232.5 155.3Q1230.7 176.7 1230.6 195.3L1230.6 201.8Q1230.6 217.8 1233.4 236.2L1237.7 264.9" stroke-width="15.3"/><path d="M1231.4 87.5L1258.8 86.2Q1272.1 85.6 1286.7 86.7L1316.7 89.0" stroke-width="15.8"/><path d="M1277.0 390.9Q1251.4 389.4 1226.9 396.7" stroke-width="14.9"/><path d="M1277.0 390.9Q1300.7 398.1 1325.4 398.2" stroke-width="16.9"/><path d="M1368.6 43.5L1395.5 41.6Q1413.7 40.4 1411.0 61.5L1409.6 72.5Q1407.1 93.1 1405.1 106.1L1404.4 110.9Q1402.0 126.4 1402.5 150.3L1403.1 177.6" stroke-width="16.6"/><path d="M1454.7 84.2L1453.3 118.5Q1452.5 138.1 1452.4 152.0L1452.3 160.7Q1452.2 176.2 1453.1 193.5L1453.5 203.2Q1454.3 218.6 1454.0 233.5L1453.6 259.6" stroke-width="17.2"/><path d="M180.9 127.5Q203.3 129.9 225.7 128.5" stroke-width="15.6"/><path d="M572.3 259.8Q592.2 258.2 611.1 264.9" stroke-width="15.1"/><path d="M1011.0 261.8Q1032.5 263.3 1053.7 266.8" stroke-width="15.8"/><path d="M-22.0 -30.7L-22.0 -13.3" stroke-width="8.2"/><path d="M-22.0 57.6L-22.0 74.4" stroke-width="8.2"/><path d="M-22.0 456.4L-22.0 467.6" stroke-width="8.2"/><path d="M13.8 -22.0L30.2 -22.0" stroke-width="8.2"/><path d="M22.0 190.3L22.0 205.7" stroke-width="8.2"/><path d="M13.8 286.0L30.2 286.0" stroke-width="8.2"/><circle cx="66.0" cy="66.0" r="5.5" fill="currentColor" stroke="none"/><path d="M147.5 286.0L160.5 286.0" stroke-width="8.2"/><circle cx="198.0" cy="-22.0" r="5.2" fill="currentColor" stroke="none"/><path d="M198.0 145.5L198.0 162.5" stroke-width="8.2"/><path d="M330.0 368.0L330.0 380.0" stroke-width="8.2"/><path d="M453.6 286.0L470.4 286.0" stroke-width="8.2"/><circle cx="462.0" cy="374.0" r="5.4" fill="currentColor" stroke="none"/><path d="M588.3 286.0L599.7 286.0" stroke-width="8.2"/><path d="M594.0 455.0L594.0 469.0" stroke-width="8.2"/><path d="M632.5 -22.0L643.5 -22.0" stroke-width="8.2"/><path d="M676.2 110.0L687.8 110.0" stroke-width="8.2"/><circle cx="682.0" cy="418.0" r="5.7" fill="currentColor" stroke="none"/><path d="M770.0 -29.3L770.0 -14.7" stroke-width="8.2"/><path d="M764.7 242.0L775.3 242.0" stroke-width="8.2"/><path d="M807.2 154.0L820.8 154.0" stroke-width="8.2"/><circle cx="858.0" cy="-22.0" r="6.6" fill="currentColor" stroke="none"/><path d="M946.0 101.8L946.0 118.2" stroke-width="8.2"/><circle cx="946.0" cy="418.0" r="6.6" fill="currentColor" stroke="none"/><path d="M1070.3 330.0L1085.7 330.0" stroke-width="8.2"/><circle cx="1078.0" cy="418.0" r="6.3" fill="currentColor" stroke="none"/><path d="M1204.4 374.0L1215.6 374.0" stroke-width="8.2"/><circle cx="1298.0" cy="66.0" r="6.7" fill="currentColor" stroke="none"/><path d="M1298.0 324.3L1298.0 335.7" stroke-width="8.2"/><path d="M1342.0 -30.7L1342.0 -13.3" stroke-width="8.2"/><circle cx="1342.0" cy="242.0" r="5.5" fill="currentColor" stroke="none"/><circle cx="1342.0" cy="418.0" r="5.3" fill="currentColor" stroke="none"/><circle cx="1430.0" cy="-22.0" r="5.5" fill="currentColor" stroke="none"/><circle cx="1430.0" cy="286.0" r="5.7" fill="currentColor" stroke="none"/></g></svg></div>
+  <div class="wrap">
+    <div class="abre-txt">
+      <p class="lead">Psicanálise lacaniana, com atendimento online.</p>
+      <div class="botoes">
+        <a class="btn btn-barro" href="https://api.whatsapp.com/send?phone=5531987700677&amp;text=Ol%C3%A1%2C%20Victor!%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Agendar sessão
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="sobre" class="faixa" aria-labelledby="t-sobre">
+  <div class="wrap">
+    <div class="sobre">
+      <figure class="retrato">
+        <img src="img/victor-lage.jpg" alt="Retrato de Victor Lage, sorrindo, de camisa polo azul-marinho, diante de um painel de madeira" width="800" height="1000" loading="lazy">
+        <figcaption>Victor Lage · CRP 04/87455</figcaption>
+      </figure>
+      <div class="sobre-txt">
+        <div class="cab">
+          <p class="rotulo">Sobre</p>
+          <h2 id="t-sobre">Uma escuta para além dos <em>rótulos</em>.</h2>
+          <p>Procuro compreender cada pessoa para além de rótulos e diagnósticos, com uma escuta atenta e acolhedora. Acredito que cada história pede tempo, e que o sofrimento de alguém não cabe inteiro em um nome.</p>
+          <p>Atuo na clínica orientado pela psicanálise lacaniana, acompanhando pessoas na busca por formas mais leves de lidar com aquilo que as faz sofrer.</p>
+        </div>
+        <ul class="formacao">
+          <li><span>Graduação</span><div><b>Psicologia</b><small>Centro Universitário Newton Paiva</small></div></li>
+          <li><span>Pós-graduação</span><div><b>Psicologia</b><small>PUC Minas</small></div></li>
+          <li><span>Capacitação</span><div><b>Mediação de Conflitos</b></div></li>
+        </ul>
+        <div class="botoes">
+          <a class="btn btn-barro" href="https://api.whatsapp.com/send?phone=5531987700677&amp;text=Ol%C3%A1%2C%20Victor!%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+            Agendar sessão
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona" class="faixa mesa" aria-labelledby="t-como">
+  <div class="wrap">
+    <div class="cab">
+      <p class="rotulo">Como funciona</p>
+      <h2 id="t-como">Online, com o mesmo <em>cuidado</em>.</h2>
+      <p class="lead">Os atendimentos acontecem por videochamada. A tela muda o lugar do encontro, mas não o que ele pede: sigilo, regularidade e um espaço onde você possa falar com liberdade.</p>
+    </div>
+    <ol class="passos">
+      <li><h3>Agende</h3><p>Você me chama no WhatsApp e combinamos juntos o dia e o horário da sessão.</p></li>
+      <li><h3>Receba o link</h3><p>Antes de cada sessão, eu envio o link da videochamada. Não é preciso instalar nada especial.</p></li>
+      <li><h3>Prepare seu espaço</h3><p>Escolha um lugar reservado, onde você esteja confortável e ninguém possa ouvir a conversa.</p></li>
+      <li><h3>Fale</h3><p>No horário marcado, a sessão começa. O ritmo das sessões seguintes é combinado entre nós.</p></li>
+    </ol>
+    <div class="combinado">
+      <div>
+        <h3>Do meu lado</h3>
+        <ul>
+          <li>Atendo de um ambiente reservado e silencioso, sem interrupções.</li>
+          <li>Tudo o que é dito na sessão fica entre nós, conforme o Código de Ética do psicólogo.</li>
+          <li>O horário combinado é seu e é respeitado.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Do seu lado</h3>
+        <ul>
+          <li>Um lugar confortável e seguro, onde sua intimidade esteja preservada.</li>
+          <li>Fones de ouvido e uma conexão estável ajudam muito.</li>
+          <li>Se possível, alguns minutos livres antes e depois, só para você.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="psicanalise" class="faixa escura" aria-labelledby="t-psi">
+  <div class="wrap">
+    <div class="psi">
+      <div class="psi-txt">
+        <p class="rotulo">A psicanálise</p>
+        <h2 id="t-psi">Falar, e se <em>escutar</em> falando.</h2>
+        <p class="lead">A psicanálise nasceu com Sigmund Freud, que descobriu que há em nós um saber que não sabemos: o inconsciente. Ele aparece nos sonhos, nos esquecimentos, nos lapsos e naquilo que insiste em se repetir em nossa vida.</p>
+        <p>Jacques Lacan, psicanalista francês, retomou a obra de Freud dando destaque à linguagem. Para ele, o inconsciente se organiza como uma linguagem. Por isso, na análise, o trabalho se faz pela palavra: você fala livremente sobre o que vier à cabeça, e o analista escuta não só o que é dito, mas como é dito.</p>
+      </div>
+      <div class="psi-lado">
+        <blockquote class="citacao">“O inconsciente é estruturado como uma linguagem.”<cite>Jacques Lacan</cite></blockquote>
+        <p>A análise não oferece conselhos prontos nem tenta encaixar ninguém em um padrão de normalidade. Ela abre espaço para que cada pessoa se escute de outro jeito e encontre, a partir da própria história, outras formas de lidar com o que a faz sofrer.</p>
+      </div>
+    </div>
+    <ul class="ideias">
+      <li><h3>A fala livre</h3><p>Não há assunto certo nem errado. O que parece pequeno ou sem sentido muitas vezes leva longe.</p></li>
+      <li><h3>A escuta</h3><p>O analista presta atenção às repetições, às pausas e às palavras que escapam, o que se diz entre as linhas.</p></li>
+      <li><h3>O tempo de cada um</h3><p>Cada análise é singular. Não há prazo fixo nem promessa de resultado: o percurso é construído sessão a sessão.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="contato" class="faixa final" aria-labelledby="t-final">
+  <div class="wrap">
+    <p class="rotulo">Vamos conversar</p>
+    <h2 id="t-final">O primeiro passo pode ser <em>uma conversa</em>.</h2>
+    <div class="final-pe">
+      <div class="botoes">
+        <a class="btn btn-barro" href="https://api.whatsapp.com/send?phone=5531987700677&amp;text=Ol%C3%A1%2C%20Victor!%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Vamos conversar
+        </a>
+        <a class="btn btn-linha" href="https://www.instagram.com/victorlagepsi/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7.5 2.9h9a4.6 4.6 0 0 1 4.6 4.6v9a4.6 4.6 0 0 1-4.6 4.6h-9a4.6 4.6 0 0 1-4.6-4.6v-9a4.6 4.6 0 0 1 4.6-4.6Z"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>
+          @victorlagepsi
+        </a>
+      </div>
+      <p>WhatsApp (31) 98770-0677<br>Atendimento online</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" role="img" aria-label="Victor Lage, Psicólogo"><span class="logo-nome">Victor Lage</span><span class="logo-desc">Psicólogo<span class="r">…</span></span></div>
+    <div class="rodape-dados">
+      <span>CRP 04/87455</span>
+      <span>Atendimento online</span>
+      <a href="https://api.whatsapp.com/send?phone=5531987700677&amp;text=Ol%C3%A1%2C%20Victor!%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">(31) 98770-0677</a>
+      <a href="https://www.instagram.com/victorlagepsi/" target="_blank" rel="noopener">@victorlagepsi</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var box = document.querySelector('.abre-lab');
+  if (!box || !box.animate || !window.matchMedia || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var B = box.getBoundingClientRect();
+  if (!B.width) return;
+  var SWEEP = 3400, HOLD = 6600, CYCLE = 13000, EASE = 'cubic-bezier(.45,.05,.3,1)';
+  box.querySelectorAll('svg path, svg circle').forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    var x = Math.min(Math.max((r.left - B.left) / B.width, 0), 1);
+    var y = Math.min(Math.max((r.top - B.top) / B.height, 0), 1);
+    var d = x * SWEEP + y * 250 + Math.random() * 150;
+    var f = function (t) { return Math.min(Math.max(t / CYCLE, 0), 1); };
+    if (el.tagName.toLowerCase() === 'path' && el.getTotalLength) {
+      var L = Math.ceil(el.getTotalLength()) + 2, dur = 600 + Math.min(L, 400) / 400 * 700;
+      el.style.strokeDasharray = L + ' ' + L;
+      el.animate([
+        { offset: 0, strokeDashoffset: L, opacity: 0 },
+        { offset: f(d), strokeDashoffset: L, opacity: 0, easing: EASE },
+        { offset: f(d + dur * .06), opacity: 1 },
+        { offset: f(d + dur), strokeDashoffset: 0, opacity: 1 },
+        { offset: f(HOLD + d), strokeDashoffset: 0, opacity: 1, easing: EASE },
+        { offset: f(HOLD + d + dur * .94), opacity: 1 },
+        { offset: f(HOLD + d + dur), strokeDashoffset: -L, opacity: 0 },
+        { offset: 1, strokeDashoffset: -L, opacity: 0 }
+      ], { duration: CYCLE, iterations: Infinity });
+    } else {
+      el.animate([
+        { offset: 0, opacity: 0 },
+        { offset: f(d + 300), opacity: 0 },
+        { offset: f(d + 700), opacity: 1 },
+        { offset: f(HOLD + d), opacity: 1 },
+        { offset: f(HOLD + d + 400), opacity: 0 },
+        { offset: 1, opacity: 0 }
+      ], { duration: CYCLE, iterations: Infinity });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
